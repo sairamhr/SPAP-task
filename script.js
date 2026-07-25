@@ -105,7 +105,7 @@ function updateDashboard() {
 
     for (let i = 1; i < rows.length; i++) {
 
-        let marks = parseInt(rows[i].cells[3].innerHTML);
+        let marks = parseInt(rows[i].cells[2].innerHTML);
 
         let status = rows[i].cells[4].innerHTML;
 
@@ -126,7 +126,6 @@ function updateDashboard() {
     document.getElementById("totalStudents").innerHTML = total;
     document.getElementById("passedStudents").innerHTML = passed;
     document.getElementById("failedStudents").innerHTML = failed;
-    document.getElementById("averageMarks").innerHTML =
 Math.round(totalMarks / total) + "50%";
 }
 
@@ -298,10 +297,6 @@ function prevPage(){
         showPage(currentPage);
     }
 }
-
-window.onload=function(){
-    showPage(currentPage);
-}
 function exportCSV(){
 
     let table=document.getElementById("studentTable");
@@ -353,15 +348,15 @@ new Chart(ctx, {
                 "green",
                 "orange",
                 "red"
-            ]
+            ],
+            borderWidth: 1
         }]
     },
     options: {
         responsive: true,
         scales: {
             y: {
-                beginAtZero: true,
-                max: 100
+                beginAtZero: true
             }
         }
     }
@@ -376,3 +371,31 @@ function addActivity(message){
 
     list.prepend(item);
 }
+const form=document.getElementById("registerForm");
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value.trim();
+let email=document.getElementById("email").value.trim();
+let password=document.getElementById("password").value.trim();
+
+if(name==""){
+alert("Please enter your name");
+return;
+}
+
+if(email==""){
+alert("Please enter email");
+return;
+}
+
+if(password.length<6){
+alert("Password must be at least 6 characters");
+return;
+}
+
+alert("Registration Successful");
+
+});
